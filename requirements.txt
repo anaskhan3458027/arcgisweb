@@ -1,0 +1,36 @@
+# ─────────────────────────────────────────────────────────────────
+#  requirements.txt
+#  Backend dependencies for the MapPlot Spatial API
+# ─────────────────────────────────────────────────────────────────
+
+# ── Web Framework ────────────────────────────────────────────────
+Django>=4.2,<5.2
+djangorestframework>=3.14,<4.0
+channels>=4.0,<5.0              # WebSocket / SSE (UploadShapefileConsumer)
+
+# ── Geospatial core ──────────────────────────────────────────────
+geopandas>=0.14,<1.1
+shapely>=2.0,<3.0
+pyproj>=3.6,<4.0               # CRS / projection handling (used by geopandas)
+fiona>=1.9,<2.0                # File I/O backend for geopandas (shp, gpkg, kml…)
+
+# ── Data ─────────────────────────────────────────────────────────
+numpy>=1.24,<3.0
+pandas>=2.0,<3.0
+
+# ── Map rendering & export ───────────────────────────────────────
+matplotlib>=3.7,<4.0
+contextily>=1.4,<2.0           # Basemap tiles (OSM, ESRI, Stamen, CartoDB)
+
+# ── PDF generation ───────────────────────────────────────────────
+reportlab>=4.0,<5.0            # PDF canvas used by ExportMapPDFView
+
+# ── GDAL (required by fiona / geopandas) ─────────────────────────
+#   Install system GDAL first, then match the Python binding version:
+#   Ubuntu:  sudo apt install gdal-bin libgdal-dev
+#   macOS:   brew install gdal
+#   GDAL>=3.4,<4.0
+
+# ── Optional but recommended ─────────────────────────────────────
+pyogrio>=0.7                   # Faster vector I/O engine for geopandas
+rtree>=1.0                     # Spatial indexing (speeds up sjoin / sjoin_nearest)
